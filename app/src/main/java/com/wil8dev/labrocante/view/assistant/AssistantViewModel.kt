@@ -1,0 +1,36 @@
+package com.wil8dev.labrocante.view.assistant
+
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.wil8dev.labrocante.view.core.UiModelHandlerFactory
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class AssistantViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
+    uiModelHandlerFactory: UiModelHandlerFactory,
+) : ViewModel() {
+
+    private val uiModelHandler = uiModelHandlerFactory.buildSavedStateUiStateHandler(
+        savedStateHandle = savedStateHandle,
+        defaultUiModel = AssistantUiModel(),
+    )
+    val uiModelFlow get() = uiModelHandler.uiModelFlow
+
+    fun navigateToPrompt(
+        isSelling: Boolean,
+    ) {
+        viewModelScope.launch {
+            uiModelHandler.updateUiModel { uiModel ->
+                uiModel.copy(
+                    navigation = AssistantUiModel.Navigation.Prompt(
+                        isSelling = isSelling,
+                    ),
+                )
+            }
+        }
+    }
+}

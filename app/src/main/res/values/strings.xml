@@ -8,4 +8,5 @@
     <string name="image2_description">Cookies</string>
     <string name="image3_description">Cake</string>
     <string name="results_placeholder">(Results will appear here)</string>
+    <string name="intro">Welcome to La Brocante\n\nReduce your carbon footprint by giving a second life to objects.\n\nEvery year, Earth Overshoot Day arrives earlier, signaling that we consume more than our planet can renew.\n\nBy choosing second-hand over new, you are helping to protect our planet and preserve its resources for future generations.\n\nConsume better, live better.</string>
 </resources>
